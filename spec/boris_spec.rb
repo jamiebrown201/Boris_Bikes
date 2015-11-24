@@ -7,5 +7,9 @@ describe DockingStation do
     	station = DockingStation.new
     	expect(station.release_bike.working?).to eq(true)
     end
+    it 'check whether a bike is docked' do
+      rack = DockingStation.new
+      bike = rack.release_bike
+      expect(rack.docked?).to eq("Bike is not docked")
+    end
 end
-
