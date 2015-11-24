@@ -18,4 +18,9 @@ describe DockingStation do
     	subject.dock(bike1)
     	expect(subject.bike).to eq(bike1)
     end
+    it { is_expected{subject.release_bike}.to raise_error if @released == 0 }
+    it 'Cannot rent bike, no bikes remain' do
+      8.times { subject.release_bike }
+      expect{subject.release_bike}.to raise_error('No bikes remaining')
+    end
 end
