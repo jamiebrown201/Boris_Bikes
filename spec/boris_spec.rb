@@ -7,9 +7,15 @@ describe DockingStation do
     	station = DockingStation.new
     	expect(station.release_bike.working?).to eq(true)
     end
-    it 'check whether a bike is docked' do
-      rack = DockingStation.new
-      bike = rack.release_bike
-      expect(rack.docked?).to eq("Bike is not docked")
+    it { is_expected.to respond_to(:dock).with(1).argument }
+    it { is_expected.to respond_to(:bike)}
+    it 'docks something' do
+    	bike1 = Bike.new
+    	expect(subject.dock(bike1)).to eq(bike1)
+    end
+    it 'returns docked bike' do
+    	bike1 = Bike.new
+    	subject.dock(bike1)
+    	expect(subject.bike).to eq(bike1)
     end
 end
